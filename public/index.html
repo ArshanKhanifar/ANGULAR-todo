@@ -8,25 +8,13 @@
 </head>
 <body ng-app="todoListApp">
 	<h1>Todo List</h1>
-	<div class="list" ng-controller="mainCtrl">
-		<div ng-repeat="todo in todos" class="item" ng-class="{'edited':edited,'completed':completed}">
+	<todos></todos>
 
-				<input type="checkbox" ng-click="completed=!completed;checked(todo,completed)"/>
-				<label ng-click="editmode=!editmode" ng-hide="editmode">{{todo.name}}</label>
-				<input ng-change="edited=true" ng-blur="editmode=!editmode" ng-class="{'editing-label':editmode}" ng-show="editmode" type="text" ng-model="todo.name" />
-				<div class="actions">
-				<a href="#">save</a>
-				<a ng-click="editmode=!editmode" href="#">edit</a>
-				<a href="#">delete</a>
-				
-			</div>
-		</div>
-	</div>
+	<script src="vendor/angular.js" type="text/javascript"></script> 
+	<script src="scripts/app.js" type="text/javascript"></script>
+	<script src="scripts/controllers/main.js" type="text/javascript"></script>
+	<script src="scripts/services/data.js" type="text/javascript"></script>
+	<script src="scripts/directives/todos.js" type="text/javascript"></script>
 
-
-  <script src="vendor/angular.js" type="text/javascript"></script>
-  <script src="node_modules/ng-focus-if/focusIf.min.js" type="text/javascript"></script>
-
-  <script src="scripts/app.js" type="text/javascript"></script>
 </body>
 </html>
