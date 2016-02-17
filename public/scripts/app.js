@@ -1,4 +1,4 @@
-angular.module("todoListApp", ['focus-if'])
+angular.module("todoListApp", [])
 
 .controller('mainCtrl',function($scope,dataService){
 	$scope.learningNgChange = function(){
@@ -7,23 +7,18 @@ angular.module("todoListApp", ['focus-if'])
 
 	$scope.helloWorld = dataService.helloWorld;
 
-	$scope.checked = function(item,completed){
-		var index = $scope.todos.indexOf(item);
-  		$scope.todos.splice(index, 1);
-  		if(completed){
-  			$scope.todos.push(item);
-  		}else{
-  			$scope.todos.unshift(item);
-  		}
-	}
-
-	$scope.trueValue = true;
+	dataService.getTodos(function(response){
+		$scope.todos = response.data;
+	});
 
 })
 .service('dataService',function($http){
 	this.helloWorld = function(){
 		console.log("this is the data service's method!!");
-	}
+	};
 
-	this.getTodos = $http.get('mock/todos.json')
+	this.getTodos = function(callback){ 
+		$http.get('mock/todos.json')
+		.then(callback);
+	}
 })
